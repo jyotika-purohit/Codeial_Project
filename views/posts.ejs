@@ -1,10 +1,14 @@
-<div id="posts-container" style="border: 3px solid violet;margin: 20px;">
+<div id="posts-container" style="margin: 20px;">
     <ul>
         <% for(post of posts) { %> 
 
-            <li class="post">
+            <li class="post" id="post-<%= post._id %>">
                 <p style="display: inline-block;"><%= post.content %></p>
                 <p style="display: inline-block;font-weight: bolder;"><%= post.user.name %></p>
+
+               <% if(locals.user && locals.user.id == post.user.id) { %>
+                    <a href="/posts/delete/<%= post._id %>" id="delete-post" >Delete post</a>
+               <% } %>
             </li>
             
         <% } %>
