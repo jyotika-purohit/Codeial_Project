@@ -26,7 +26,20 @@ let createNewPost=function(){
                 <p style="display: inline-block;" >${post.content}</p>
                 <p  style="display: inline-block;font-weight: bolder;" >${post.user.name}</p>
                 <a href="/posts/delete/${post._id}" class="delete-post" >Delete post</a>
-        </li>`)
+        
+            <div id="comment-container">
+                    <form action="/comments/create" method="POST" id="new-comment-form" >
+                            <input type="text" name="content" placeholder="Add comment .." required>
+
+                            <input type="hidden" name="user" value="${post.user._id}" >
+                            <input type="hidden" name="post" value="${post._id}" >
+                            
+                            <button type="submit">Add Comment</button>
+                        </form>
+            </div>
+        </li>
+
+        `)
     }
 
 

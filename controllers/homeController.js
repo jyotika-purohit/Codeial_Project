@@ -5,7 +5,13 @@ module.exports.homepage=async function(req,res){
         
     let posts=await Post.find({}).
     populate('user').
-    sort('-createdAt');
+    sort('-createdAt').
+    populate({
+        path:'comments',
+        populate:{
+            path:'user'
+        }
+    });
     
     return res.render('home',{
         title:'Codeail | Homepage',

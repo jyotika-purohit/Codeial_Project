@@ -1,8 +1,9 @@
 const Post=require('../models/post');
+const Comment=require('../models/comments');
 module.exports.create=async function(req,res){
     try{
         let post=await Post.create(req.body);
-        await post.populate('user').execPopulate();
+        await post.populate('user','name email').execPopulate();
         // console.log("Post is :",post);
         if(req.xhr){
             return res.status(200).json({
@@ -26,8 +27,10 @@ module.exports.destroy=async function(req,res){
         let post=await Post.findById(req.params.id);
 
         if(req.user.id == post.user){
-
+            
             post.remove();
+            await Comment.deleteMany({post:req.params.id});
+
             if(req.xhr){
                 return res.status(200).json({
                     data:{
