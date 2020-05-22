@@ -6,6 +6,12 @@ module.exports.signup=function(req,res){
     });
 }
 
+module.exports.signin=function(req,res){
+    return res.render('signin',{
+        title:'Codeial | Signin'
+    });
+}
+
 module.exports.create=async function(req,res){
     if(req.body.password == req.body.confirmpassword){
         try{
@@ -30,4 +36,9 @@ module.exports.create=async function(req,res){
         return res.redirect('back');
     }
     
+}
+
+module.exports.create_session=function(req,res){
+    console.log("Session created!");
+    return res.redirect('back');
 }

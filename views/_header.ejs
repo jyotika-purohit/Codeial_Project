@@ -1,5 +1,10 @@
 
 <div style="background-color: lightgreen;width: 100vw;">
-    <button> <a href="/users/signup"> Sign up </a>
-    </button>
+   <%if(locals.user) { %>
+        <h3 style="margin: 0px;"><%=locals.user.name%></h3>
+    <% } else { %>
+        <button> <a href="/users/signup"> Sign up </a></button>
+
+        <button><a href="/users/signin">Sign in</a></button>
+    <% } %>
 </div>
