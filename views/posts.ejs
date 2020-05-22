@@ -7,7 +7,7 @@
                 <p style="display: inline-block;font-weight: bolder;"><%= post.user.name %></p>
 
                <% if(locals.user && locals.user.id == post.user.id) { %>
-                    <a href="/posts/delete/<%= post._id %>" id="delete-post" >Delete post</a>
+                    <a href="/posts/delete/<%= post._id %>" class="delete-post" >Delete post</a>
                <% } %>
             </li>
             

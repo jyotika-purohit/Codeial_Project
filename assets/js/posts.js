@@ -1,3 +1,4 @@
+{
 let createNewPost=function(){
     const newPostForm=$('#new-post-form');
     newPostForm.submit(function(e){
@@ -9,7 +10,7 @@ let createNewPost=function(){
                 success:function(data){
                     let newPost=newPostDOM(data.data.post);
                     $('#posts-container>ul').prepend(newPost);
-                    deletePost($(' #delete-post',newPost));
+                    deletePost($(' .delete-post',newPost));
                 },error:function(err){
                     console.log("Error",err.responseText)
                 }
@@ -17,12 +18,14 @@ let createNewPost=function(){
         )
     });
 
+    }
+
     let newPostDOM=function(post){
         return $(`
         <li class="post" id="post-${post._id}" >
                 <p style="display: inline-block;" >${post.content}</p>
                 <p  style="display: inline-block;font-weight: bolder;" >${post.user.name}</p>
-                <a href="/posts/delete/${post._id}" id="delete-post" >Delete post</a>
+                <a href="/posts/delete/${post._id}" class="delete-post" >Delete post</a>
         </li>`)
     }
 
@@ -43,6 +46,19 @@ let createNewPost=function(){
             });
         });
     }
-}
+
+
+    let convertPostsToAjax=function(){
+        const AllDeletePostButtons=$('.delete-post');
+        for(i=0;i<AllDeletePostButtons.length;i++){
+
+            deletePost($(AllDeletePostButtons.eq(i)));
+
+        }
+    }
 
 createNewPost();
+convertPostsToAjax();
+
+
+}
