@@ -1,12 +1,18 @@
 const User=require('../models/user');
 
 module.exports.signup=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/');
+    }
     return res.render('signup',{
         title:'Codeial | Signup'
     });
 }
 
 module.exports.signin=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/');
+    }
     return res.render('signin',{
         title:'Codeial | Signin'
     });
@@ -40,5 +46,11 @@ module.exports.create=async function(req,res){
 
 module.exports.create_session=function(req,res){
     console.log("Session created!");
-    return res.redirect('back');
+    return res.redirect('/');
+}
+
+module.exports.destroy_session=function(req,res){
+    req.logout();
+    console.log("User logged out!");
+    return res.redirect('/');
 }

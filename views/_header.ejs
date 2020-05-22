@@ -1,10 +1,13 @@
 
-<div style="background-color: lightgreen;width: 100vw;">
-   <%if(locals.user) { %>
-        <h3 style="margin: 0px;"><%=locals.user.name%></h3>
+<div style="background-color: lightgreen;width: 100vw;height: 10vh;margin-bottom: 20px;position: relative;">
+   <div style="position: absolute;right: 5%;top: 50%;">
+    <%if(locals.user) { %>
+        <h3 style="margin: 0px;display: inline-block;margin: 0px 20px;"><%=locals.user.name%></h3>
+        <button> <a href="/users/signout"> Sign out </a></button>
     <% } else { %>
         <button> <a href="/users/signup"> Sign up </a></button>
 
         <button><a href="/users/signin">Sign in</a></button>
     <% } %>
+   </div>
 </div>
