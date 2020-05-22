@@ -35,7 +35,9 @@ let createNewPost=function(){
                             <input type="hidden" name="post" value="${post._id}" >
                             
                             <button type="submit">Add Comment</button>
-                        </form>
+                    </form>
+
+                    <ul></ul>
             </div>
         </li>
 

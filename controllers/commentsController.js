@@ -7,6 +7,16 @@ module.exports.create=async function(req,res){
         let post=await Post.findById(req.body.post);
         post.comments.push(comment);
         post.save();
+
+        if(req.xhr){
+            return res.status(200).json({
+                data:{
+                    comment:comment
+                },
+                message:"New Comment Created!"
+            });
+        }
+
         return res.redirect('back');
 
     }catch(error){

@@ -24,14 +24,19 @@
 
                     <% } %>
 
+                    <ul>
+
                     <% for(comment of post.comments) { %> 
                         
-                        <div>
+                        <li id="comment-<%= comment._id %>">
                             <p style="color: orangered;display: inline-block;"><%= comment.content %></p>
                             <p style="color: lime;display: inline-block;"><%= comment.user.name %></p>
-                        </div>
+                            <a href="/comments/delete/<%= comment._id %>">Delete Comment</a>
+                        </li>
                         
                     <% } %>
+
+                    </ul>
                    
                </div>
                 
