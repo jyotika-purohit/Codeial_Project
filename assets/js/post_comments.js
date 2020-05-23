@@ -12,7 +12,7 @@
                     newComment=newCommentDOM(data.data.comment);
                     console.log(data);
                     $('#comment-container>ul').prepend(newComment);
-
+                    
                 },
                 error:function(error){
                     console.log("Error",error.responseText);
@@ -25,7 +25,7 @@
         return $(`<li id="comment-${comment._id}">
             <p style="color: orangered;display: inline-block;">${comment.content}</p>
             <p style="color: lime;display: inline-block;">${comment.user.name}</p>
-            <a href="/comments/delete/${comment._id}">Delete Comment</a>
+             <a href="/comments/delete/${comment._id}" class="delete-comment" >Delete Comment</a>
         </li>`);
     }
 

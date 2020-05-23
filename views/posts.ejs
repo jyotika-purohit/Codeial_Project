@@ -31,7 +31,12 @@
                         <li id="comment-<%= comment._id %>">
                             <p style="color: orangered;display: inline-block;"><%= comment.content %></p>
                             <p style="color: lime;display: inline-block;"><%= comment.user.name %></p>
-                            <a href="/comments/delete/<%= comment._id %>">Delete Comment</a>
+
+                            <%if ((locals.user && locals.user.id==post.user.id) || (locals.user && locals.user.id==comment.user.id )) { %>
+
+                                <a href="/comments/delete/<%= comment._id %>" class="delete-comment">Delete Comment</a>
+
+                            <% } %>
                         </li>
                         
                     <% } %>
