@@ -26,8 +26,9 @@ let createNewPost=function(){
                 <p style="display: inline-block;" >${post.content}</p>
                 <p  style="display: inline-block;font-weight: bolder;" >${post.user.name}</p>
                 <a href="/posts/delete/${post._id}" class="delete-post" >Delete post</a>
+
             <div id="comment-container">
-                    <form action="/comments/create" method="POST" id="new-comment-form" >
+                    <form action="/comments/create" method="POST" id="new-${post._id}-comment-form" >
                             <input type="text" name="content" placeholder="Add comment .." required>
 
                             <input type="hidden" name="user" value="${post.user._id}" >
@@ -36,7 +37,7 @@ let createNewPost=function(){
                             <button type="submit">Add Comment</button>
                     </form>
 
-                    <ul></ul>
+                    <ul id="post-comments-${post._id}" ></ul>
             </div>
         </li>
 
@@ -62,14 +63,25 @@ let createNewPost=function(){
     }
 
 
-    let convertPostsToAjax=function(){
-        const AllDeletePostButtons=$('.delete-post');
+  
+    
+let convertPostsToAjax = function(){
+    const AllDeletePostButtons=$('.delete-post');
         for(i=0;i<AllDeletePostButtons.length;i++){
 
             deletePost($(AllDeletePostButtons.eq(i)));
 
         }
-    }
+    $('#posts-container>ul>li').each(function(){
+        let self = $(this);
+        // let deleteButton = $(' .delete-post', self);
+        // deletePost(deleteButton);
+
+        // get the post's id by splitting the id attribute
+        let postId = self.prop('id').split("-")[1]
+        new PostComments(postId);
+    });
+}
 
 createNewPost();
 convertPostsToAjax();

@@ -13,7 +13,7 @@
                <div id="comment-container">
                    <% if(locals.user) { %>
                     
-                    <form action="/comments/create" method="POST" id="new-comment-form" >
+                    <form action="/comments/create" method="POST" id="new-<%= post._id %>-comment-form" >
                         <input type="text" name="content" placeholder="Add comment .." required>
 
                         <input type="hidden" name="user" value="<%= locals.user._id %>" >
@@ -24,11 +24,11 @@
 
                     <% } %>
 
-                    <ul>
+                    <ul id="post-comments-<%= post._id %>" >
 
                     <% for(comment of post.comments) { %> 
                         
-                        <li id="comment-<%= comment._id %>">
+                        <li id="comment-<%= comment._id %>" id="comment-<%= comment._id %>">
                             <p style="color: orangered;display: inline-block;"><%= comment.content %></p>
                             <p style="color: lime;display: inline-block;"><%= comment.user.name %></p>
 
