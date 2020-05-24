@@ -18,10 +18,13 @@ module.exports.create=async function(req,res){
             });
         }
 
+        //req.flash('success','Comment published!'); // This was without flash
         return res.redirect('back');
 
     }catch(error){
         console.log("Error:",error);
+
+        req.flash('error',error); 
         return resizeBy.redirect('back');
 
     }
@@ -43,15 +46,19 @@ module.exports.destroy=async function(req,res){
                 });
             }
 
+            //req.flash('success','Comment deleted'); // This was without flash
             return res.redirect('back');
         }else{
             
+            req.flash('error','Unauthorized'); 
             return res.redirect('back');
         }
 
     }catch(error){
         console.log("Error:",error);
-        return;
+
+        req.flash('error',error); 
+        return res.redirect('back');
     }
     
 }

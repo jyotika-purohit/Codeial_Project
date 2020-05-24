@@ -14,10 +14,13 @@ module.exports.create=async function(req,res){
             });
         }
         console.log("new Post data sent!");
+        // req.flash('success','Post published!');    //This was for without ajax
         return res.redirect('/users/signin');
 
     }catch(error){
         console.log("Error",error);
+
+        req.flash('error',error);   
         return res.redirect('back');
     }
 }
@@ -39,9 +42,12 @@ module.exports.destroy=async function(req,res){
                     message:"Post deleted successfully!"
                 });
             }
+            // req.flash('success','Post deleted');    //This was for without ajax
             return res.redirect('back');
         }else{
             console.log("Unauthorized!")
+            
+            req.flash('error','Unauthorized');
             return res.redirect('back');
         }
 
