@@ -1,21 +1,31 @@
 <div id="posts-container" style="margin: 20px;">
-    <ul>
+    <ul id="post-ul">
         <% for(post of posts) { %> 
 
             <li class="post" id="post-<%= post._id %>">
-                <p style="display: inline-block;"><%= post.content %></p>
-                <p style="display: inline-block;font-weight: bolder;"><%= post.user.name %></p>
-
-               <% if(locals.user && locals.user.id == post.user.id) { %>
-                    <a href="/posts/delete/<%= post._id %>" class="delete-post" >Delete post</a>
-               <% } %>
+                
+                <div class="username-delete-container">
+                    <div>
+                        <div class="user-avatar-posts"></div>
+                        <h5 class="post-username"><%= post.user.name %></h5>
+                    </div>
+                    
+                    <% if(locals.user && locals.user.id == post.user.id) { %>
+                        <div class="post-delete-option">
+                            <i class="fa fa-ellipsis-h"></i>
+                            <a href="/posts/delete/<%= post._id %>" class="delete-post delete-post-<%=post._id %>" >Delete post</a>
+                        </div>
+                    <% } %>
+                </div>
+                <p class="post-content"><%= post.content %></p>
+                
+               
 
                <div id="comment-container">
                    <% if(locals.user) { %>
-                    
-                    <form action="/comments/create" method="POST" id="new-<%= post._id %>-comment-form" >
-                        <input type="text" name="content" placeholder="Add comment .." required>
-
+                    <div class="hr"></div>
+                    <form action="/comments/create" method="POST" id="new-<%= post._id %>-comment-form" class="new-comment-form">
+                        <input type="text" name="content" placeholder="Add comment as <%=locals.user.name%> .. " required>
                         <input type="hidden" name="user" value="<%= locals.user._id %>" >
                         <input type="hidden" name="post" value="<%= post._id%>" >
 
@@ -24,20 +34,11 @@
 
                     <% } %>
 
-                    <ul id="post-comments-<%= post._id %>" >
+                    <ul id="post-comments-<%= post._id %>" class="comment-ul">
 
                     <% for(comment of post.comments) { %> 
                         
-                        <li id="comment-<%= comment._id %>" id="comment-<%= comment._id %>">
-                            <p style="color: orangered;display: inline-block;"><%= comment.content %></p>
-                            <p style="color: lime;display: inline-block;"><%= comment.user.name %></p>
-
-                            <%if ((locals.user && locals.user.id==post.user.id) || (locals.user && locals.user.id==comment.user.id )) { %>
-
-                                <a href="/comments/delete/<%= comment._id %>" class="delete-comment">Delete Comment</a>
-
-                            <% } %>
-                        </li>
+                        <%-include('comments');-%>
                         
                     <% } %>
 

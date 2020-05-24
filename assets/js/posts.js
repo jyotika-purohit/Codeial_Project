@@ -9,10 +9,10 @@ let createNewPost=function(){
                 data:newPostForm.serialize(),
                 success:function(data){
                     let newPost=newPostDOM(data.data.post);
-                    $('#posts-container>ul').prepend(newPost);
+                    $('#post-ul').prepend(newPost);
                     deletePost($(' .delete-post',newPost));
                     new PostComments(data.data.post._id);
-
+                    deleteOptionToggle(newPost);
                     new Noty({
                         theme:'relax',
                         text:"Post published!",
@@ -31,27 +31,34 @@ let createNewPost=function(){
     }
 
     let newPostDOM=function(post){
-        return $(`
-        <li class="post" id="post-${post._id}" >
-                <p style="display: inline-block;" >${post.content}</p>
-                <p  style="display: inline-block;font-weight: bolder;" >${post.user.name}</p>
-                <a href="/posts/delete/${post._id}" class="delete-post" >Delete post</a>
 
-            <div id="comment-container">
-                    <form action="/comments/create" method="POST" id="new-${post._id}-comment-form" >
-                            <input type="text" name="content" placeholder="Add comment .." required>
-
+        return $(`<li class="post" id="post-${post._id}">
+                    <div class="username-delete-container">
+                        <div>
+                            <div class="user-avatar-posts"></div>
+                            <h5 class="post-username">${ post.user.name}</h5>
+                        </div>
+                            <div class="post-delete-option">
+                                <i class="fa fa-ellipsis-h"></i>
+                                
+                                <a href="/posts/delete/${post._id}" class="delete-post delete-post-${post._id}" >Delete post</a>
+                            </div>
+                    </div>
+                    <p class="post-content">${post.content}</p>
+                <div id="comment-container">
+                        <div class="hr"></div>
+                        <form action="/comments/create" method="POST" id="new-${post._id}-comment-form" class="new-comment-form">
+                            <input type="text" name="content" placeholder="Add comment as ${post.user.name } .." required>
                             <input type="hidden" name="user" value="${post.user._id}" >
                             <input type="hidden" name="post" value="${post._id}" >
-                            
+
                             <button type="submit">Add Comment</button>
-                    </form>
+                        </form>
+                        <ul id="post-comments-${post._id}" >
 
-                    <ul id="post-comments-${post._id}" ></ul>
-            </div>
-        </li>
-
-        `)
+                        </ul>
+                </div>
+                </li>`)
     }
 
 
@@ -83,6 +90,24 @@ let createNewPost=function(){
     }
 
 
+    let deleteOptionToggle=function(post){
+            let post_Id=(post.prop('id').split("-")[1]);
+            let ellipse=$(" .delete-post",post).prev();
+            let deleteBtn=$(`.delete-post-${post_Id}`);
+            ellipse.click(function(e){
+               
+                if(deleteBtn.css('display')=='block'){
+                    deleteBtn.css({
+                        'display':'none'
+                    })
+                }else{
+                    deleteBtn.css({
+                        'display':'block'
+                    });
+                }
+            });
+    }
+
   
     
 let convertPostsToAjax = function(){
@@ -97,7 +122,8 @@ let convertPostsToAjax = function(){
 
         let deleteButton = $(' .delete-post', self);
         deletePost(deleteButton);
-  
+        
+        deleteOptionToggle(self);
         // get the post's id by splitting the id attribute
         let postId = self.prop('id').split("-")[1]
         new PostComments(postId);

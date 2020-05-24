@@ -1,0 +1,112 @@
+#home-container {
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly; }
+  #home-container #left-aside {
+    width: 20%; }
+  #home-container #right-aside {
+    width: 20%; }
+  #home-container #main-container {
+    width: 50%;
+    background-color: whitesmoke;
+    padding-top: 30px;
+    font-family: Helvetica, Arial, sans-serif; }
+    #home-container #main-container #new-post-form {
+      padding: 0px; }
+      #home-container #main-container #new-post-form textarea {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        min-height: 200px;
+        font-size: 17px;
+        border: none;
+        padding: 10px;
+        box-sizing: border-box; }
+      #home-container #main-container #new-post-form button {
+        width: 100%;
+        color: white;
+        background-color: black;
+        border: none;
+        height: 30px;
+        font-size: 17px; }
+        #home-container #main-container #new-post-form button:hover {
+          background-color: #252525;
+          cursor: pointer; }
+    #home-container #main-container #posts-container ul {
+      list-style-type: none;
+      padding: 0px; }
+      #home-container #main-container #posts-container ul .post {
+        border: 1px solid lightgrey;
+        margin: 20px auto;
+        padding: 10px;
+        background-color: var(--post-bg);
+        border-radius: 5px; }
+        #home-container #main-container #posts-container ul .post .username-delete-container {
+          display: flex;
+          justify-content: space-between; }
+          #home-container #main-container #posts-container ul .post .username-delete-container .user-avatar-posts {
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            min-height: 50px;
+            min-width: 50px;
+            background-color: yellow;
+            border-radius: 50%; }
+          #home-container #main-container #posts-container ul .post .username-delete-container .post-username {
+            display: inline-block;
+            font-family: inherit;
+            color: var(--post-username-col);
+            text-transform: capitalize;
+            font-size: 20px;
+            margin: 0px; }
+          #home-container #main-container #posts-container ul .post .username-delete-container .post-delete-option {
+            position: relative; }
+            #home-container #main-container #posts-container ul .post .username-delete-container .post-delete-option .fa-ellipsis-h {
+              color: blue; }
+              #home-container #main-container #posts-container ul .post .username-delete-container .post-delete-option .fa-ellipsis-h:hover {
+                cursor: pointer; }
+            #home-container #main-container #posts-container ul .post .username-delete-container .post-delete-option .delete-post {
+              padding: 10px;
+              position: absolute;
+              right: 10%;
+              top: 20%;
+              height: 20px;
+              text-align: center;
+              width: 100px;
+              background-color: whitesmoke;
+              display: none;
+              border-radius: 10px;
+              color: black;
+              text-decoration: none;
+              font-weight: bolder; }
+              #home-container #main-container #posts-container ul .post .username-delete-container .post-delete-option .delete-post:hover {
+                color: red; }
+        #home-container #main-container #posts-container ul .post .post-content {
+          color: var(--post-content-col);
+          font-family: var(--post-content-font-fam);
+          font-size: var(--post-content-font-size);
+          text-align: justify;
+          margin: 10px auto;
+          max-width: 95%;
+          letter-spacing: 0.04rem;
+          word-spacing: 0.1rem;
+          line-height: 1.25rem;
+          height: auto; }
+        #home-container #main-container #posts-container ul .post .hr {
+          height: 2px;
+          width: 90%;
+          margin: 0px auto;
+          background-color: black; }
+        #home-container #main-container #posts-container ul .post #comment-container .new-comment-form {
+          height: 50px; }
+          #home-container #main-container #posts-container ul .post #comment-container .new-comment-form input {
+            height: 30px;
+            width: 90%;
+            display: block;
+            margin: 20px auto;
+            border-radius: 20px;
+            outline: 0px;
+            padding-inline-start: 20px;
+            font-size: 17px; }
+          #home-container #main-container #posts-container ul .post #comment-container .new-comment-form button {
+            visibility: hidden; }

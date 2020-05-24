@@ -1,0 +1,16 @@
+
+
+<li  id="comment-<%= comment._id %>" class="comment">
+    
+        <div class="user-avatar-comments"></div>
+    
+    <div class="username-content-container">
+        <p class="comment-username"><%= comment.user.name %></p>
+        <p class="comment-content"><%= comment.content %></p>
+    </div>
+    <%if ((locals.user && locals.user.id==post.user.id) || (locals.user && locals.user.id==comment.user.id )) { %>
+
+        <a href="/comments/delete/<%= comment._id %>" class="delete-comment">Delete Comment</a>
+
+    <% } %>
+</li>

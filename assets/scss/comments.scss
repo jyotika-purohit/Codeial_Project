@@ -1,0 +1,55 @@
+.comment{
+    display: flex;
+    margin: 20px 0px;
+    .user-avatar-comments{
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+        min-height: 50px;
+        min-width: 50px;
+        background-color: red;
+        border-radius: 50%;
+    }
+    .username-content-container{
+        padding: 0px 10px;
+        display: flex;
+        background-color: lightblue;
+        border-radius: 20px;
+        margin-left: 10px;
+        width: 80%;
+        background-color: var(--comment-bg);
+        max-width: 80%;
+        height: auto;
+
+        .comment-username{
+            display: inline-block;
+            font-family: inherit;
+            color: var(--comment-username-col);
+            text-transform: capitalize;
+            font-size: 15px;
+            margin-top: 10px;       
+        }
+
+        .comment-content{
+            text-align: justify;
+            display: inline-block;
+            border-radius: 20px;
+            // min-width:80%;
+            font-family: var(--comment-content-font-fam);
+            margin-left: 10px;
+            max-width: 90%;
+            height: auto;
+            font-size: var(--comment-content-font-size);
+            letter-spacing: 0.04rem;
+            word-spacing: 0.07rem;
+            line-height: 1.15rem;
+            margin-top: 10px;
+        }
+        
+
+    }
+    
+    .delete-comment{
+
+    }
+}

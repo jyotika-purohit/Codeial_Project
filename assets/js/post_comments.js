@@ -46,12 +46,19 @@ class PostComments{
     }
 
     newCommentDOM(comment){
-        return $(`<li id="comment-${comment._id}" class="comment" >
-            <p style="color: orangered;display: inline-block;">${comment.content}</p>
-            <p style="color: lime;display: inline-block;">${comment.user.name}</p>
-             <a href="/comments/delete/${comment._id}" class="delete-comment" >Delete Comment</a>
-        </li>`);
-    }
+       
+
+        return $(`<li  id="comment-${comment._id}" class="comment">
+    
+                        <div class="user-avatar-comments"></div>
+                    <div class="username-content-container">
+                        <p class="comment-username">${comment.user.name}</p>
+                        <p class="comment-content">${comment.content}</p>
+                    </div>
+                        <a href="/comments/delete/${comment._id}" class="delete-comment">Delete Comment</a>
+
+                </li>`)
+        }
 
 
     deleteComment(deleteLink){
