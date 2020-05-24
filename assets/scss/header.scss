@@ -1,0 +1,54 @@
+#header-container{
+    background:linear-gradient(to right,cyan,lightblue) ;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    
+    div{
+        h1{
+            font-family: serif;
+            letter-spacing: 0.08rem;
+            margin: 0px 10px;
+
+        }
+        ul{
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            li{ 
+                display: inline-block;
+                a{
+                    text-decoration: none;
+                    color: rgb(252, 248, 0);
+                    // color: rgb(34, 34, 34);
+                    font-size: 20px;
+                    position: relative;
+                    &::after{
+                        position: absolute;
+                        bottom: -30%;
+                        left: 0%;
+                        content: '';
+                        background:linear-gradient(to right,#ee0979,#ff6a00);
+                        height: 30%;
+                        width: 0%;
+                        transition: width 0.5s ease-in-out;
+                        
+                    }
+
+                    &:hover::after{
+                        width: 110%;
+                        border-radius: 2px;
+                    }
+                }
+                *{
+                    margin: 0px 30px;
+                    padding: 0px;
+                }
+            }
+        }
+    }
+    *{
+        margin: 10px 0px;
+    }
+    
+}

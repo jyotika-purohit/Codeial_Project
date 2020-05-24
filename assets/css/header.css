@@ -1,0 +1,37 @@
+#header-container {
+  background: linear-gradient(to right, cyan, lightblue);
+  color: white;
+  display: flex;
+  justify-content: space-between; }
+  #header-container div h1 {
+    font-family: serif;
+    letter-spacing: 0.08rem;
+    margin: 0px 10px; }
+  #header-container div ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px; }
+    #header-container div ul li {
+      display: inline-block; }
+      #header-container div ul li a {
+        text-decoration: none;
+        color: #fcf800;
+        font-size: 20px;
+        position: relative; }
+        #header-container div ul li a::after {
+          position: absolute;
+          bottom: -30%;
+          left: 0%;
+          content: '';
+          background: linear-gradient(to right, #ee0979, #ff6a00);
+          height: 30%;
+          width: 0%;
+          transition: width 0.5s ease-in-out; }
+        #header-container div ul li a:hover::after {
+          width: 110%;
+          border-radius: 2px; }
+      #header-container div ul li * {
+        margin: 0px 30px;
+        padding: 0px; }
+  #header-container * {
+    margin: 10px 0px; }

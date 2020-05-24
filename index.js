@@ -10,6 +10,15 @@ const passportLocalAuthStrategy=require('./config/passport-local-auth');
 const mongoStore=require('connect-mongo')(session);
 const flash=require('connect-flash');
 const customMware=require('./config/middleware');
+const sassMiddleware=require('node-sass-middleware');
+
+app.use(sassMiddleware({
+    src:'./assets/scss',
+    dest:'./assets/css',
+    debug:true,
+    outputStyle:'extended',
+    prefix:'/css'
+}))
 
 app.use(express.urlencoded());
 app.use(express.static('assets'));

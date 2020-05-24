@@ -1,13 +1,17 @@
 
-<div style="background-color: lightgreen;width: 100vw;height: 10vh;margin-bottom: 20px;position: relative;">
-   <div style="position: absolute;right: 5%;top: 50%;">
-    <%if(locals.user) { %>
-        <h3 style="margin: 0px;display: inline-block;margin: 0px 20px;"><%=locals.user.name%></h3>
-        <button> <a href="/users/signout"> Sign out </a></button>
-    <% } else { %>
-        <button> <a href="/users/signup"> Sign up </a></button>
-
-        <button><a href="/users/signin">Sign in</a></button>
-    <% } %>
+<div id="header-container">
+   <div>
+        <h1>Codeial</h1>
+   </div>
+   <div>
+       <ul>
+        <%if(locals.user) { %>
+            <li><h3><%=locals.user.name%></h3></li>
+            <li><a href="/users/signout"> Sign out </a></li>
+        <% } else { %>
+            <li><a href="/users/signup"> Sign up </a></li>
+            <li><a href="/users/signin">Sign in</a></li>
+        <% } %>
+        </ul>
    </div>
 </div>
