@@ -43,7 +43,7 @@ module.exports.create=async function(req,res){
         }
     }else{
         console.log("Password and confirm password do not match");
-        req.flash('error','Password and confirm passwords do not match  ');
+        req.flash('error','Password and confirm password do not match  ');
         return res.redirect('back');
     }
     
