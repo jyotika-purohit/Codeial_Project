@@ -66,17 +66,18 @@ let createNewPost=function(){
   
     
 let convertPostsToAjax = function(){
-    const AllDeletePostButtons=$('.delete-post');
-        for(i=0;i<AllDeletePostButtons.length;i++){
+    // const AllDeletePostButtons=$('.delete-post');
+    //     for(i=0;i<AllDeletePostButtons.length;i++){
 
-            deletePost($(AllDeletePostButtons.eq(i)));
+    //         deletePost($(AllDeletePostButtons.eq(i)));
 
-        }
+    //     }
     $('#posts-container>ul>li').each(function(){
         let self = $(this);
-        // let deleteButton = $(' .delete-post', self);
-        // deletePost(deleteButton);
 
+        let deleteButton = $(' .delete-post', self);
+        deletePost(deleteButton);
+  
         // get the post's id by splitting the id attribute
         let postId = self.prop('id').split("-")[1]
         new PostComments(postId);

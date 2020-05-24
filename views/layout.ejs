@@ -8,6 +8,15 @@
 </head>
 <body style="margin: 0px;padding: 0px;">
     <%-include('_header');-%>
+    <% if(flash.success && flash.success.length>0) { %>
+        <h3><%= flash.success %></h3>
+    <% } %>
+
+    <% if(flash.error && flash.error.length>0) { %>
+        <h3><%= flash.error %></h3>
+    <% } %>
+
+
         <%- body -%>
     <%-include('_footer');-%>
     

@@ -15,7 +15,7 @@ class PostComments{
             });
         }
    createComment(postId){
-       
+        console.log("POOP");
         let pSelf = this;
         this.newCommentForm.submit(function(e){
             e.preventDefault();
