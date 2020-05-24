@@ -11,6 +11,16 @@ let createNewPost=function(){
                     let newPost=newPostDOM(data.data.post);
                     $('#posts-container>ul').prepend(newPost);
                     deletePost($(' .delete-post',newPost));
+                    new PostComments(data.data.post._id);
+
+                    new Noty({
+                        theme:'relax',
+                        text:"Post published!",
+                        type:'success',
+                        layout:'topRight',
+                        timeout:1500
+                    }).show();
+
                 },error:function(err){
                     console.log("Error",err.responseText)
                 }
@@ -54,6 +64,16 @@ let createNewPost=function(){
                 success:function(data){
                     postId=data.data.postId;
                     $(`#post-${postId}`).remove();
+
+                    new Noty({
+                        theme:'relax',
+                        text:"Post deleted",
+                        type:'success',
+                        layout:'topRight',
+                        timeout:1500
+                    }).show();
+
+
                 },
                 error:function(err){
                     console.log("Error",err.responseText)

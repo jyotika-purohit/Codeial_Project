@@ -30,6 +30,14 @@ class PostComments{
                     $(`#post-comments-${postId}`).prepend(newComment);
                     pSelf.deleteComment(' .delete-comment',newComment);
                     
+                    new Noty({
+                        theme:'relax',
+                        text:"Comment published!",
+                        type:'success',
+                        layout:'topRight',
+                        timeout:1500
+                    }).show();
+
                 }, 
                 error:function(error){
                     console.log("Error",error.responseText);
@@ -57,6 +65,16 @@ class PostComments{
                     console.log(data);
                     let commentId=data.data.commentId
                     $(`#comment-${commentId}`).remove();
+
+                    new Noty({
+                        theme:'relax',
+                        text:"Comment deleted",
+                        type:'success',
+                        layout:'topRight',
+                        timeout:1500
+                    }).show();
+
+
                 },error:function(error){
                     console.log(error.responseText);
                 }
