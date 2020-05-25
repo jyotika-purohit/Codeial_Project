@@ -61,3 +61,53 @@ module.exports.destroy_session=function(req,res){
     req.flash('success','You have logged out');
     return res.redirect('/');
 }
+
+module.exports.profile=async function(req,res){
+    let user = await User.findById(req.params.id);
+    if(user){
+        try{
+            return res.render('profile',{
+                title:"Profile Page",
+                profileuser:user
+            });
+        }catch(error){
+            req.flash('error',error);
+            returnres.redirect('back');
+        }
+
+    }else{
+        console.log("This user doesn't exists");
+        req.flash('error','Unauthorized');
+        return res.redirect('back');   
+    }
+}
+
+module.exports.profile_update=async function(req,res){
+    let user=await User.findById(req.params.id);
+    if(user){
+        try{
+            if(req.user.id==user.id){
+                await User.findByIdAndUpdate(req.params.id,{
+                    name:req.body.name,
+                    email:req.body.email,
+                    age:req.body.age,
+                    city:req.body.city
+                });
+                req.flash('success','Profile Updated!');
+                return res.redirect('back');
+                
+            }else{
+                req.flash('error','Unauthorized');
+                return res.redirect('back');
+            }
+            
+        }catch(error){
+            req.flash('error',error);
+            return res.redirect('back');
+        }
+
+    }else{
+        req.flash('error','Unauthorized');
+        return res.redirect('back');
+    }
+}

@@ -12,4 +12,7 @@ router.post('/create-session',passport.authenticate(
     'local', 
     { failureRedirect: '/users/signin'}
     ),usersController.create_session);
+router.post('/profile-update/:id',passport.checkAuthentication,usersController.profile_update);
+router.get('/profile-info/:id',passport.checkAuthentication,usersController.profile);
+
 module.exports=router;

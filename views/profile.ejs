@@ -1,0 +1,21 @@
+
+
+<div>
+    <h2 style="text-transform: capitalize;"><%= profileuser.name %></h2>
+</div>
+
+
+<% if (profileuser.id == locals.user.id) { %>
+    
+    <form action="/users/profile-update/<%= profileuser._id%>" method="POST" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Name" value="<%= profileuser.name%>" required>
+        <input type="email" name="email" placeholder="Email" value="<%= profileuser.email%>" required>
+        <input type="number" name="age" placeholder="Age" value="<%= profileuser.age %>">
+        <input type="text" name="city" placeholder="City" value="<%=profileuser.city%>">
+        <input type="file" name="avatar" placeholder="Upload File" >
+        <button type="submit">Update</button>
+
+    </form>
+
+<% } %>
+

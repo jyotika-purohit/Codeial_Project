@@ -93,6 +93,7 @@ let createNewPost=function(){
     let deleteOptionToggle=function(post){
             let post_Id=(post.prop('id').split("-")[1]);
             let ellipse=$(" .delete-post",post).prev();
+
             let deleteBtn=$(`.delete-post-${post_Id}`);
             ellipse.click(function(e){
                

@@ -6,11 +6,11 @@
    <div>
        <ul>
         <%if(locals.user) { %>
-            <li><h3><%=locals.user.name%></h3></li>
-            <li><a href="/users/signout"> Sign out </a></li>
+            <li><h3><a href="/users/profile-info/<%= locals.user._id %>"><%= locals.user.name %></a></h3></li>
+            <li><a href="/users/signout" class="a"> Sign out </a></li>
         <% } else { %>
-            <li><a href="/users/signup"> Sign up </a></li>
-            <li><a href="/users/signin">Sign in</a></li>
+            <li><a href="/users/signup" class="a"> Sign up </a></li>
+            <li><a href="/users/signin" class="a">Sign in</a></li>
         <% } %>
         </ul>
    </div>

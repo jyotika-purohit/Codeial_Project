@@ -23,6 +23,9 @@
       text-align: center;
       padding-top: 10px;
       box-sizing: border-box; }
+      #header-container div ul li a {
+        text-decoration: none;
+        color: white; }
       #header-container div ul li:hover {
         border-top: 3px solid black;
         padding-top: 7px; }
@@ -31,12 +34,12 @@
         font-size: 20px;
         margin: 0px;
         font-family: monospace; }
-      #header-container div ul li a {
+      #header-container div ul li .a {
         text-decoration: none;
         color: #fcf800;
         font-size: 20px;
         position: relative; }
-        #header-container div ul li a::after {
+        #header-container div ul li .a::after {
           position: absolute;
           bottom: -30%;
           left: 0%;
@@ -45,6 +48,6 @@
           height: 30%;
           width: 0%;
           transition: width 0.5s ease-in-out; }
-        #header-container div ul li a:hover::after {
+        #header-container div ul li .a:hover::after {
           width: 110%;
           border-radius: 2px; }

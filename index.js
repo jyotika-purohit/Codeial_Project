@@ -28,7 +28,7 @@ app.set('views',path.join(__dirname,'views'));
 
 
 app.use(session({
-    name:'Projext_Codeail',
+    name:'Project_Codeail',
     secret:'blahsomething',
     resave:false,
     saveUninitialized:true,

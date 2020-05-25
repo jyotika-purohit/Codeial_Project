@@ -18,6 +18,10 @@
             padding: 0px;
             height: 100%;
             li{ 
+                a{
+                    text-decoration: none;
+                    color: white;
+                }
                 margin-top: 0px;
                 display: inline-block;
                 height: 100%;
@@ -36,8 +40,9 @@
                     font-size: 20px;
                     margin: 0px;
                     font-family:monospace;
+                    
                 }
-                a{
+                .a{
                     text-decoration: none;
                     color: rgb(252, 248, 0);
                     // color: rgb(34, 34, 34);
@@ -60,6 +65,7 @@
                         border-radius: 2px;
                     }
                 }
+
                 
             }
         }

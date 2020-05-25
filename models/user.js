@@ -12,6 +12,12 @@ const userSchema=new mongoose.Schema({
     name:{
         type:String,
         required:true
+    },
+    age:{
+        type:Number
+    },
+    city:{
+        type:String
     }
     
 },{

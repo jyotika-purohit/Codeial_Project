@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/css/right_aside.css">
+
+<div class="right_aside-container">
+    <ul class="users-list">
+        <% for(user of allUsers) { %> 
+            <li><a href="/users/profile-info/<%= user._id %>"><h4><%= user.name %></h4></a></li>
+        <% } %>
+    </ul>
+
+    
+</div>

@@ -1,0 +1,11 @@
+.right_aside-container {
+  border-left: 1px solid lightgray;
+  padding-inline-start: 10px;
+  height: 100%; }
+  .right_aside-container .users-list {
+    padding: 0px;
+    list-style-type: none; }
+    .right_aside-container .users-list li a {
+      text-decoration: none; }
+      .right_aside-container .users-list li a h4 {
+        text-transform: capitalize; }
