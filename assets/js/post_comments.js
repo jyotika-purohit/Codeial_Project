@@ -50,7 +50,10 @@ class PostComments{
 
         return $(`<li  id="comment-${comment._id}" class="comment">
     
-                        <div class="user-avatar-comments"></div>
+                        <div class="user-avatar-comments">
+                        <img src="${comment.user.avatar}" alt="${comment.user.name}" height="100%" width="100%" style="border-radius: 50%;">
+                        </div>
+                        
                     <div class="username-content-container">
                         <p class="comment-username">${comment.user.name}</p>
                         <p class="comment-content">${comment.content}</p>

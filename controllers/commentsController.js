@@ -7,7 +7,7 @@ module.exports.create=async function(req,res){
         let post=await Post.findById(req.body.post);
         post.comments.push(comment);
         post.save();
-        await comment.populate('user','name email').execPopulate();
+        await comment.populate('user','name email avatar').execPopulate();
         if(req.xhr){
             return res.status(200).json({
                 data:{

@@ -2,7 +2,13 @@
 
 <li  id="comment-<%= comment._id %>" class="comment">
     
-        <div class="user-avatar-comments"></div>
+        <div class="user-avatar-comments">
+
+            <% if(comment.user.avatar) { %>
+                <img src="<%=comment.user.avatar%>" alt="<%=comment.user.name%>" height="100%" width="100%" style="border-radius: 50%;">
+            <% } %>
+
+        </div>
     
     <div class="username-content-container">
         <p class="comment-username"><%= comment.user.name %></p>

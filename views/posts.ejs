@@ -6,7 +6,11 @@
                 
                 <div class="username-delete-container">
                     <div>
-                        <div class="user-avatar-posts"></div>
+                        <div class="user-avatar-posts" style="padding: 1px;">
+                            <% if(post.user.avatar) { %>
+                                <img src="<%=post.user.avatar%>" alt="<%=post.user.name%>" height="100%" width="100%" style="border-radius: 50%;">
+                            <% } %>
+                        </div>
                         <h5 class="post-username"><%= post.user.name %></h5>
                     </div>
                     

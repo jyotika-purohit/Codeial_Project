@@ -35,7 +35,13 @@ let createNewPost=function(){
         return $(`<li class="post" id="post-${post._id}">
                     <div class="username-delete-container">
                         <div>
-                            <div class="user-avatar-posts"></div>
+
+                        <div class="user-avatar-posts" style="padding: 1px;">
+                            
+                                <img src="${post.user.avatar}" alt="${post.user.name}" height="100%" width="100%" style="border-radius: 50%;">
+                            
+                        </div>
+                        
                             <h5 class="post-username">${ post.user.name}</h5>
                         </div>
                             <div class="post-delete-option">

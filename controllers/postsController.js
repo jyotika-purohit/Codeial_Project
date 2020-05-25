@@ -3,7 +3,7 @@ const Comment=require('../models/comments');
 module.exports.create=async function(req,res){
     try{
         let post=await Post.create(req.body);
-        await post.populate('user','name email').execPopulate();
+        await post.populate('user','name email avatar').execPopulate();
         // console.log("Post is :",post);
         if(req.xhr){
             return res.status(200).json({

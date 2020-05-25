@@ -50,7 +50,7 @@
             width: 50px;
             min-height: 50px;
             min-width: 50px;
-            background-color: yellow;
+            box-shadow: 0px 0px 10px gray;
             border-radius: 50%; }
           #home-container #main-container #posts-container ul .post .username-delete-container .post-username {
             display: inline-block;
