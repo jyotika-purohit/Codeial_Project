@@ -66,6 +66,7 @@
               #home-container #main-container #posts-container ul .post .username-delete-container .post-delete-option .fa-ellipsis-h:hover {
                 cursor: pointer; }
             #home-container #main-container #posts-container ul .post .username-delete-container .post-delete-option .delete-post {
+              box-shadow: 0px 0px 5px grey;
               padding: 10px;
               position: absolute;
               right: 10%;

@@ -12,11 +12,13 @@
     
     <div class="username-content-container">
         <p class="comment-username"><%= comment.user.name %></p>
-        <p class="comment-content"><%= comment.content %></p>
+        <div class="comment-content"><p><%= comment.content %></p></div>
     </div>
     <%if ((locals.user && locals.user.id==post.user.id) || (locals.user && locals.user.id==comment.user.id )) { %>
-
-        <a href="/comments/delete/<%= comment._id %>" class="delete-comment">Delete Comment</a>
+        <div class="comment-delete-option">
+            <i class="fa fa-ellipsis-h"></i>
+            <a href="/comments/delete/<%= comment._id %>" class="delete-comment">Delete Comment</a>
+        </div>
 
     <% } %>
 </li>

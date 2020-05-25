@@ -1,6 +1,6 @@
 const Comment=require('../models/comments');
 const Post=require('../models/post');
-
+const commentsMailer=require('../mailers/comments_mailer');
 module.exports.create=async function(req,res){
     try{
         let comment=await Comment.create(req.body);
@@ -8,6 +8,7 @@ module.exports.create=async function(req,res){
         post.comments.push(comment);
         post.save();
         await comment.populate('user','name email avatar').execPopulate();
+        commentsMailer.newComment(comment);
         if(req.xhr){
             return res.status(200).json({
                 data:{
@@ -18,14 +19,15 @@ module.exports.create=async function(req,res){
             });
         }
 
-        //req.flash('success','Comment published!'); // This was without flash
+      
+        
         return res.redirect('back');
 
     }catch(error){
         console.log("Error:",error);
 
         req.flash('error',error); 
-        return resizeBy.redirect('back');
+        return res.redirect('back');
 
     }
 }

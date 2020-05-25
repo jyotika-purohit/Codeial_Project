@@ -115,27 +115,53 @@ let createNewPost=function(){
             });
     }
 
+    //DELETE COMMENT TOGGLE
+    let deleteOptionCommentToggle=function(comment){
+        let comment_Id=(comment.prop('id').split("-")[1]);
+        let ellipse=$(" .delete-comment",comment).prev();
+
+        let deleteBtn=$(" .delete-comment",comment);
+        ellipse.click(function(e){
+           
+            if(deleteBtn.css('display')=='block'){
+                deleteBtn.css({
+                    'display':'none'
+                })
+            }else{
+                deleteBtn.css({
+                    'display':'block'
+                });
+            }
+        });
+    }
+
   
     
-let convertPostsToAjax = function(){
-    // const AllDeletePostButtons=$('.delete-post');
-    //     for(i=0;i<AllDeletePostButtons.length;i++){
+    let convertPostsToAjax = function(){
+        // const AllDeletePostButtons=$('.delete-post');
+        //     for(i=0;i<AllDeletePostButtons.length;i++){
 
-    //         deletePost($(AllDeletePostButtons.eq(i)));
+        //         deletePost($(AllDeletePostButtons.eq(i)));
 
-    //     }
-    $('#posts-container>ul>li').each(function(){
-        let self = $(this);
+        //     }
+        $('#posts-container>ul>li').each(function(){
+            let self = $(this);
 
-        let deleteButton = $(' .delete-post', self);
-        deletePost(deleteButton);
-        
-        deleteOptionToggle(self);
-        // get the post's id by splitting the id attribute
-        let postId = self.prop('id').split("-")[1]
-        new PostComments(postId);
-    });
-}
+            let deleteButton = $(' .delete-post', self);
+            deletePost(deleteButton);
+            
+            deleteOptionToggle(self);
+            // get the post's id by splitting the id attribute
+            let postId = self.prop('id').split("-")[1]
+            new PostComments(postId);
+            $(' .comment',self).each(function(){
+                let self=$(this);
+
+                deleteOptionCommentToggle(self);
+
+            })
+        });
+    }
 
 createNewPost();
 convertPostsToAjax();

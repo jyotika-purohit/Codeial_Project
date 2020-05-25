@@ -1,4 +1,4 @@
- 
+
 class PostComments{
         // constructor is used to initialize the instance of the class whenever a new instance is created
         constructor(postId){
@@ -7,7 +7,7 @@ class PostComments{
             this.postContainer = $(`#post-${postId}`);
             this.newCommentForm=$(`#new-${postId}-comment-form`);    
             this.createComment(postId);
-    
+            
             let self = this;
             // call for all the existing comments
             $(' .delete-comment', this.postContainer).each(function(){
@@ -27,8 +27,9 @@ class PostComments{
                     // let postId=data.data.postId;
                     let newComment=pSelf.newCommentDOM(data.data.comment);
                     $(`#post-comments-${postId}`).prepend(newComment);
-                    pSelf.deleteComment(' .delete-comment',newComment);
                     
+                    pSelf.deleteComment(' .delete-comment',newComment);
+                    pSelf.deleteOptionCommentToggle(newComment);
                     new Noty({
                         theme:'relax',
                         text:"Comment published!",
@@ -58,7 +59,10 @@ class PostComments{
                         <p class="comment-username">${comment.user.name}</p>
                         <p class="comment-content">${comment.content}</p>
                     </div>
+                    <div class="comment-delete-option">
+                        <i class="fa fa-ellipsis-h"></i>
                         <a href="/comments/delete/${comment._id}" class="delete-comment">Delete Comment</a>
+                    </div>
 
                 </li>`)
         }
@@ -71,7 +75,7 @@ class PostComments{
                 type:'get',
                 url:$(deleteLink).prop('href'),
                 success:function(data){
-                    console.log(data);
+                    // console.log(data);
                     let commentId=data.data.commentId
                     $(`#comment-${commentId}`).remove();
 
@@ -89,6 +93,25 @@ class PostComments{
                 }
             })
 
+        });
+    }
+
+    deleteOptionCommentToggle(comment){
+        let comment_Id=(comment.prop('id').split("-")[1]);
+        let ellipse=$(" .delete-comment",comment).prev();
+
+        let deleteBtn=$(" .delete-comment",comment);
+        ellipse.click(function(e){
+           
+            if(deleteBtn.css('display')=='block'){
+                deleteBtn.css({
+                    'display':'none'
+                })
+            }else{
+                deleteBtn.css({
+                    'display':'block'
+                });
+            }
         });
     }
 
