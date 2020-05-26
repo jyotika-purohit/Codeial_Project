@@ -1,4 +1,10 @@
-<div>
-    <h1>ABCDEFGH</h1>
-    <h1><%=comment.content%></h1>
+<div style="position: relative;width: 100wv;height:auto;background:linear-gradient(to bottom,mediumspringgreen,rgb(0, 250, 42) ,rgb(0, 250, 196),whitesmoke);">
+    <div style="position: absolute;width:80%;height:80%;left:10%;top:10%;background-color: mediumpurple;padding: 30px;color: lawngreen;">
+        <h2>Hi ! <span style="color:orange;"><%= post.user.name %></span>  </h2>
+        <h4 style="color: lawngreen;">A new comment <span style="color: rgb(242, 231, 245);"><%=comment.content%></span> got published on yout post <span style="color: black"> <%= post.content %></span>.</h4>
+        <h1><a href="http://localhost:8000/" style="color: orange;">Check it out now!</a></h1>
+        <br>
+        <h3>Thanks!</h3>
+       
+    </div>
 </div>

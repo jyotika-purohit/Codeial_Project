@@ -14,5 +14,8 @@ router.post('/create-session',passport.authenticate(
     ),usersController.create_session);
 router.post('/profile-update/:id',passport.checkAuthentication,usersController.profile_update);
 router.get('/profile-info/:id',passport.checkAuthentication,usersController.profile);
-
+router.get('/forgot-password',usersController.forgotPasswordPage);
+router.post('/getPasswordMail',usersController.sendPasswordMail);
+router.get('/reset-password/:token',usersController.passwordChangePage);
+router.post('/reset-password/:token',usersController.changePassword);
 module.exports=router;

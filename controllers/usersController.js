@@ -1,6 +1,10 @@
 const User=require('../models/user');
 const fs=require('fs');
 const path=require('path');
+const accessTokens=require('../models/accessTokens');
+const crypto=require('crypto');
+const passwordResetMailer=require('../mailers/passwordReset_mailer');
+
 module.exports.signup=function(req,res){
     if(req.isAuthenticated()){
         return res.redirect('/');
@@ -115,4 +119,74 @@ module.exports.profile_update=async function(req,res){
         req.flash('error','Unauthorized');
         return res.redirect('back');
     }
+}
+
+module.exports.forgotPasswordPage=function(req,res){
+    return res.render("forgotPasswordPage",{
+        title:"Forgot Password"
+    });
+}
+
+module.exports.sendPasswordMail=async function(req,res){
+    let user= await User.findOne({email:req.body.email});
+    if(user){
+        try{
+            let token=await accessTokens.create({
+                user:user._id,
+                accessToken:crypto.randomBytes(20).toString('hex')
+            });
+            passwordResetMailer.newPasswordMail(req.body.email,token.accessToken);
+            
+            req.flash('success','Password recovery email sent!');
+            return res.redirect('/users/signin');
+
+        }catch(error){
+            req.flash('error',error);
+            return res.redirect('back');
+        }
+
+    }else{
+        req.flash('error','No user with this email exists');
+        return res.redirect('back');
+    }
+    
+}
+
+module.exports.passwordChangePage=function(req,res){
+
+    return res.render('passwordChangePage',{
+        title:"Change Password",
+        token:req.params.token
+    });
+}
+
+module.exports.changePassword=async function(req,res){
+    let token=await accessTokens.findOne({accessToken:req.params.token});
+    if(token){
+        try{
+            let user=await User.findById(token.user);
+
+            if(req.body.password==req.body.confirmpassword){
+                await User.findByIdAndUpdate(token.user,{
+                    password:req.body.password
+                });
+
+                req.flash('success','Password Successfully Changed!');
+                return res.redirect('/users/signin');
+                
+            }else{
+                req.flash('error','Password and confirm password are not same');
+                return res.redirect('back');
+            }
+            
+        }catch(error){
+            req.flash('error',error);
+            return res.redirect('/');
+        }
+
+    }else{
+        req.flash('error','Unauthorized');
+        return res.redirect('/users/signin');
+    }
+
 }

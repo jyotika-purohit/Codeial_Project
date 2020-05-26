@@ -1,5 +1,5 @@
 #header-container {
-  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  background: linear-gradient(to right, mediumspringgreen, #00fa2a, #00fac4, whitesmoke);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -36,7 +36,7 @@
         font-family: monospace; }
       #header-container div ul li .a {
         text-decoration: none;
-        color: #fcf800;
+        color: mediumpurple;
         font-size: 20px;
         position: relative; }
         #header-container div ul li .a::after {

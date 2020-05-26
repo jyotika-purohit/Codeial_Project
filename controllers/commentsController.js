@@ -8,7 +8,8 @@ module.exports.create=async function(req,res){
         post.comments.push(comment);
         post.save();
         await comment.populate('user','name email avatar').execPopulate();
-        commentsMailer.newComment(comment);
+        await post.populate('user','name email').execPopulate();
+        commentsMailer.newComment(post,comment); //send post because we will send mail to the post.user
         if(req.xhr){
             return res.status(200).json({
                 data:{
