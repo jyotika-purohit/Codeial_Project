@@ -13,6 +13,8 @@ let createNewPost=function(){
                     deletePost($(' .delete-post',newPost));
                     new PostComments(data.data.post._id);
                     deleteOptionToggle(newPost);
+                    likePost(newPost);
+
                     new Noty({
                         theme:'relax',
                         text:"Post published!",
@@ -33,6 +35,7 @@ let createNewPost=function(){
     let newPostDOM=function(post){
 
         return $(`<li class="post" id="post-${post._id}">
+        <a href="/likes/toggle/Post,${post._id}" class="post-like-Btn"> <span class="count">${post.likes.length}</span>Likes</a>
                     <div class="username-delete-container">
                         <div>
 
@@ -135,33 +138,124 @@ let createNewPost=function(){
         });
     }
 
+    let likePost=function(post){
+        let likeBtn=$(' .post-like-Btn',post);
+         
+        likeBtn.click(function(e){
+            e.preventDefault();
+
+            $.ajax({
+                type:'get',
+                url:likeBtn.prop('href'),
+                success:function(data){
+                    let deleted=data.data.deleted;
+                    let currCount=$(' .count',likeBtn);
+                    let countSpan=$(' .count',likeBtn)
+                    let count=parseInt(countSpan.html());
+                    let newCount;
+                    let text;
+                    if(deleted==false){
+                        // console.log("FALSE",currCount);
+                        newCount=count+1;
+                        text="Post Liked";
+                    }else{
+                        // console.log("TRUE",currCount);
+                        newCount=count-1;
+                        text="Post Unliked"
+                    }
+                    countSpan.html(newCount);
+                    
+                    new Noty({
+                        theme:'relax',
+                        text:text,
+                        type:'success',
+                        layout:'topRight',
+                        timeout:1500
+                    }).show();
+
+                },
+                error:function(error){
+                    console.log(error.responseText);
+                }
+            })
+
+        })
+    }
+
+    let likeComment=function(comment){
+        
+        let likeBtn=$(' .comment-like-Btn',comment);
+        
+        likeBtn.click(function(e){
+            e.preventDefault();
+            
+            $.ajax({
+                type:'get',
+                url:likeBtn.prop('href'),
+                success:function(data){
+                    let deleted=data.data.deleted;
+                    let currCount=$(' .count',likeBtn);
+                    let countSpan=$(' .count',likeBtn)
+                    let count=parseInt(countSpan.html());
+                    let newCount;
+                    let text;
+                    if(deleted==false){
+                        // console.log("FALSE",currCount);
+                        newCount=count+1;
+                        text="Comment Liked";
+                    }else{
+                        // console.log("TRUE",currCount);
+                        newCount=count-1;
+                        text="Comment Unliked"
+                    }
+                    countSpan.html(newCount);
+                    
+                    new Noty({
+                        theme:'relax',
+                        text:text,
+                        type:'success',
+                        layout:'topRight',
+                        timeout:1500
+                    }).show();
+
+                },
+                error:function(error){
+                    console.log(error.responseText);
+                }
+            })
+
+        })
+    }
+
   
     
     let convertPostsToAjax = function(){
-        // const AllDeletePostButtons=$('.delete-post');
-        //     for(i=0;i<AllDeletePostButtons.length;i++){
-
-        //         deletePost($(AllDeletePostButtons.eq(i)));
-
-        //     }
+        
         $('#posts-container>ul>li').each(function(){
             let self = $(this);
-
             let deleteButton = $(' .delete-post', self);
             deletePost(deleteButton);
-            
             deleteOptionToggle(self);
+            likePost(self);
+            
             // get the post's id by splitting the id attribute
             let postId = self.prop('id').split("-")[1]
             new PostComments(postId);
+
+
             $(' .comment',self).each(function(){
                 let self=$(this);
 
                 deleteOptionCommentToggle(self);
+                likeComment(self);
+                // likeComment(self);
 
-            })
+            });
+
         });
     }
+
+    
 
 createNewPost();
 convertPostsToAjax();

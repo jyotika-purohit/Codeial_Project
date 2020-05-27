@@ -3,6 +3,7 @@
         <% for(post of posts) { %> 
 
             <li class="post" id="post-<%= post._id %>">
+                <a href="/likes/toggle/Post,<%= post._id %>" class="post-like-Btn"> <span class="count"><%= post.likes.length %></span>Likes</a>
                 
                 <div class="username-delete-container">
                     <div>

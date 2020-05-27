@@ -8,7 +8,7 @@ let transporter=nodemailer.createTransport({
     port:587,
     secure:false,
     auth:{  //auth is the authentication object in the transporter
-        user:'codeailproject@gmail.com',   //defines the mail id which will send the mail
+        user:'codeial0205@gmail.com',   //defines the mail id which will send the mail
         pass:'codeial_pwd@12'  //pwd of acc which send email
     
     },tls:{

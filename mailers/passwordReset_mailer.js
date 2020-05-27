@@ -7,7 +7,7 @@ exports.newPasswordMail=(email,accessToken) => {
     let htmlString=nodeMailer.renderTemplate({accessToken:accessToken},'/users/password_mail.ejs'); //extnsn '.ejs' also
     
     nodeMailer.transporter.sendMail({
-        from:'codeailproject@gmail.com',
+        from:'codeial0205@gmail.com',
         to:email,
         subject:"Codeial | Password Reset",
         // html:"<h1>Yay! Your comment is now published!</h1>"

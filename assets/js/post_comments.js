@@ -12,7 +12,10 @@ class PostComments{
             // call for all the existing comments
             $(' .delete-comment', this.postContainer).each(function(){
                 self.deleteComment($(this));
+                
             });
+
+
         }
    createComment(postId){
         let pSelf = this;
@@ -30,6 +33,8 @@ class PostComments{
                     
                     pSelf.deleteComment(' .delete-comment',newComment);
                     pSelf.deleteOptionCommentToggle(newComment);
+                    pSelf.likeComment(newComment);
+                    
                     new Noty({
                         theme:'relax',
                         text:"Comment published!",
@@ -50,7 +55,7 @@ class PostComments{
        
 
         return $(`<li  id="comment-${comment._id}" class="comment">
-    
+        <a href="/likes/toggle/Comment,${comment._id}" class="comment-like-Btn"> <span class="count">${comment.likes.length}</span>Likes</a>
                         <div class="user-avatar-comments">
                         <img src="${comment.user.avatar}" alt="${comment.user.name}" height="100%" width="100%" style="border-radius: 50%;">
                         </div>
@@ -113,6 +118,50 @@ class PostComments{
                 });
             }
         });
+    }
+
+    likeComment(comment){
+        let likeBtn=$(' .comment-like-Btn',comment);
+        
+        likeBtn.click(function(e){
+            e.preventDefault();
+            
+            $.ajax({
+                type:'get',
+                url:likeBtn.prop('href'),
+                success:function(data){
+                    let deleted=data.data.deleted;
+                    let currCount=$(' .count',likeBtn);
+                    let countSpan=$(' .count',likeBtn)
+                    let count=parseInt(countSpan.html());
+                    let newCount;
+                    let text;
+                    if(deleted==false){
+                        // console.log("FALSE",currCount);
+                        newCount=count+1;
+                        text="Comment Liked";
+                    }else{
+                        // console.log("TRUE",currCount);
+                        newCount=count-1;
+                        text="Comment Unliked"
+                    }
+                    countSpan.html(newCount);
+                    
+                    new Noty({
+                        theme:'relax',
+                        text:text,
+                        type:'success',
+                        layout:'topRight',
+                        timeout:1500
+                    }).show();
+
+                },
+                error:function(error){
+                    console.log(error.responseText);
+                }
+            })
+
+        })
     }
 
 }

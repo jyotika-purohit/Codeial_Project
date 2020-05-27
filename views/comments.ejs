@@ -1,7 +1,7 @@
 
 
 <li  id="comment-<%= comment._id %>" class="comment">
-    
+    <a href="/likes/toggle/Comment,<%= comment._id %>" class="comment-like-Btn"> <span class="count"><%= comment.likes.length %></span>Likes</a>
         <div class="user-avatar-comments">
 
             <% if(comment.user.avatar) { %>

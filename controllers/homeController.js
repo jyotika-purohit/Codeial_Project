@@ -4,8 +4,9 @@ module.exports.homepage=async function(req,res){
     try{    
         
     let posts=await Post.find({}).
-    populate('user').
     sort('-createdAt').
+    populate('likes').
+    populate('user').
     populate({
         path:'comments',
         populate:{
