@@ -155,11 +155,9 @@ let createNewPost=function(){
                     let newCount;
                     let text;
                     if(deleted==false){
-                        // console.log("FALSE",currCount);
                         newCount=count+1;
                         text="Post Liked";
                     }else{
-                        // console.log("TRUE",currCount);
                         newCount=count-1;
                         text="Post Unliked"
                     }

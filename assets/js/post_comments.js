@@ -80,7 +80,6 @@ class PostComments{
                 type:'get',
                 url:$(deleteLink).prop('href'),
                 success:function(data){
-                    // console.log(data);
                     let commentId=data.data.commentId
                     $(`#comment-${commentId}`).remove();
 
@@ -137,11 +136,9 @@ class PostComments{
                     let newCount;
                     let text;
                     if(deleted==false){
-                        // console.log("FALSE",currCount);
                         newCount=count+1;
                         text="Comment Liked";
                     }else{
-                        // console.log("TRUE",currCount);
                         newCount=count-1;
                         text="Comment Unliked"
                     }

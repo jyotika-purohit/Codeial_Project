@@ -5,7 +5,7 @@ const Like=require('../models/likes');
 module.exports.createLike=async function(req,res){
     // /likes/toggle/type:'xyc',id:'qwe7e2ue'
     try{
-
+        
         let likeable;
         let deleted=false;
         let type=req.params.type;
@@ -46,7 +46,7 @@ module.exports.createLike=async function(req,res){
             }
         });
 
-        return res.redirect('back');
+        // return res.redirect('back');
 
     }catch(error){
         return res.json(500,{

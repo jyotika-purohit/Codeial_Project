@@ -32,9 +32,11 @@ module.exports.destroy=async function(req,res){
 
         if(req.user.id == post.user){
             
-            post.remove();
-            await Comment.deleteMany({post:req.params.id});
-            await Like.deleteMany({likeable:req.params.id});
+            await Like.deleteMany({likeable:post,onModel:'Post'}); //delete likes on that post 
+            await Like.deleteMany({likeable:{$in:post.comments}});//delete likes on that comment
+            post.remove();//delete post
+            await Comment.deleteMany({post:req.params.id}); //delete comments of that post
+            
             if(req.xhr){
                 return res.status(200).json({
                     data:{

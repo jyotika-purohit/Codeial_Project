@@ -3,7 +3,11 @@
         <% for(post of posts) { %> 
 
             <li class="post" id="post-<%= post._id %>">
-                <a href="/likes/toggle/Post,<%= post._id %>" class="post-like-Btn"> <span class="count"><%= post.likes.length %></span>Likes</a>
+                <% if(locals.user) { %> 
+                    <a href="/likes/toggle/Post,<%= post._id %>" class="post-like-Btn"> <span class="count"><%= post.likes.length %></span>Likes</a>    
+                <% } else { %> 
+                    <p style="color: orangered;"><%= post.likes.length %>Likes</p>    
+                <% } %>
                 
                 <div class="username-delete-container">
                     <div>

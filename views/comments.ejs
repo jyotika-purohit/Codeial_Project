@@ -1,8 +1,13 @@
 
 
 <li  id="comment-<%= comment._id %>" class="comment">
+
+    <% if(locals.user) { %>
     <a href="/likes/toggle/Comment,<%= comment._id %>" class="comment-like-Btn"> <span class="count"><%= comment.likes.length %></span>Likes</a>
-        <div class="user-avatar-comments">
+    <% } else { %> 
+        <p style="color: orangered;"><%= comment.likes.length %> Likes</p>    
+    <% } %>    
+    <div class="user-avatar-comments">
 
             <% if(comment.user.avatar) { %>
                 <img src="<%=comment.user.avatar%>" alt="<%=comment.user.name%>" height="100%" width="100%" style="border-radius: 50%;">
