@@ -1,0 +1,8 @@
+<div>
+    <h3>Hi <%=to.name%> , </h3>
+    <h4>You have received a friend request from <%=from.name%> ! </h4>
+    <button><a href="http://localhost:8000/friendships/acceptRequest/<%=from._id%>,<%=to.id%>"> Accept</a></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button><a href="http://localhost:8000/friendships/declineRequest/<%=from._id%>,<%=to.id%>">Decline</a></button>
+   
+</div>

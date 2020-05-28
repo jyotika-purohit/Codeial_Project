@@ -18,13 +18,40 @@ module.exports.homepage=async function(req,res){
             // }
         });
 
+
         let allUsers=await User.find({});
+        // let allUsers=await User.find({}).populate({
+        //     path:'friends',
+        //     populate:{
+        //         path:'user'
+        //     }
+        // });
+
+        if(req.isAuthenticated()){
+            let currUser=await User.findById(req.user.id).populate({
+                path:'friends',
+                    populate:{
+                        path:'user'
+                    }
+                
+            });
+
+            return res.render('home',{
+                title:'Codeail | Homepage',
+                posts:posts,
+                allUsers:allUsers,
+                currUser:currUser
+            });
+
+        }else{
+            return res.render('home',{
+                title:'Codeail | Homepage',
+                posts:posts,
+                allUsers:allUsers
+            });
+        }
         
-        return res.render('home',{
-            title:'Codeail | Homepage',
-            posts:posts,
-            allUsers:allUsers
-        });
+        
         
         }catch(error){
             console.log("Error : ",error);

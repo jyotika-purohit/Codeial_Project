@@ -21,3 +21,12 @@
 
 <% } %>
 
+
+
+<% if(profileuser.id!=locals.user.id  && isFriend==false) { %>
+    <button><a href="/friendships/addFriend/<%=locals.user._id%>,<%=profileuser._id%>">Add Friend!</a></button>    
+<% }else if(profileuser.id!=locals.user.id  && isFriend!=false) { %>
+    <h3>You are friends with <%=profileuser.name%> !</h3>
+    <button><a href="/friendships/removeFriend/<%=locals.user._id%>,<%=profileuser._id%>">Remove Friend</a></button>
+<% } %>
+

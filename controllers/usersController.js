@@ -4,6 +4,7 @@ const path=require('path');
 const accessTokens=require('../models/accessTokens');
 const crypto=require('crypto');
 const passwordResetMailer=require('../mailers/passwordReset_mailer');
+const Friendships=require('../models/friendships');
 
 module.exports.signup=function(req,res){
     if(req.isAuthenticated()){
@@ -69,11 +70,22 @@ module.exports.destroy_session=function(req,res){
 
 module.exports.profile=async function(req,res){
     let user = await User.findById(req.params.id);
+    
+    let isFriend;
+    let isFriend1 =await Friendships.findOne({to:req.user._id,from:user._id});
+    let isFriend2=await Friendships.findOne({from:req.user._id,to:user._id});
+    if(isFriend1 || isFriend2){
+        isFriend=true;
+    }else{
+        isFriend=false;
+    }
+
     if(user){
         try{
             return res.render('profile',{
                 title:"Profile Page",
-                profileuser:user
+                profileuser:user,
+                isFriend:isFriend
             });
         }catch(error){
             req.flash('error',error);
