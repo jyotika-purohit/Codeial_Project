@@ -1,9 +1,12 @@
-<div>
+<link rel="stylesheet" href="/css/signup.css">
+<div id='sign-up-container'>
     <form action="/users/create" method="POST">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="confirmpassword" placeholder="Confirm Password" required>
+        <div id="input-container">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirmpassword" placeholder="Confirm Password" required>
+        </div>
         <button type="Submit">Sign Up!</button>
     </form>
 </div>

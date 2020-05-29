@@ -1,0 +1,12 @@
+#sign-up-container {
+  background-color: white; }
+  #sign-up-container form {
+    display: flex; }
+    #sign-up-container form #input-container input {
+      display: block;
+      margin: 40px; }
+    #sign-up-container form button {
+      display: block;
+      height: 20px;
+      width: 200px;
+      margin: 20vh auto; }
