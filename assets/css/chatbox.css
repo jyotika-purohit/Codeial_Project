@@ -1,4 +1,5 @@
 #user-chat-box {
+  overflow-x: hidden !important;
   position: fixed;
   bottom: 0%;
   right: 0%;
@@ -9,53 +10,88 @@
   max-width: 360px;
   background-color: whitesmoke;
   overflow: auto; }
+  #user-chat-box #min-max-chatbox-Btn {
+    position: relative;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to right, #f08294, pink); }
+    #user-chat-box #min-max-chatbox-Btn p {
+      margin: 0px; }
   #user-chat-box #messages {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     list-style-type: none;
     padding: 0px;
-    margin: 0px; }
-    #user-chat-box #messages #other-messages {
+    margin: 0px;
+    margin-bottom: 32px; }
+    #user-chat-box #messages .other-messages {
       background-color: lightpink;
       min-width: 130px;
       max-width: 130px;
       min-height: 40px;
       padding: 5px;
-      font-size: 19px;
+      font-size: 17px;
       height: auto;
       word-break: normal;
       margin: 15px;
-      margin-left: 30px; }
-      #user-chat-box #messages #other-messages span {
-        text-align: left;
+      margin-left: 30px;
+      word-break: normal;
+      position: relative;
+      text-align: left; }
+      #user-chat-box #messages .other-messages span {
+        text-align: inherit;
         margin: 5px;
         min-width: inherit;
         max-width: inherit;
-        min-height: inherit; }
-    #user-chat-box #messages #my-messages {
+        min-height: inherit;
+        position: relative;
+        word-break: break-all; }
+      #user-chat-box #messages .other-messages h4 {
+        color: brown;
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        bottom: -20px;
+        font-size: 15px;
+        word-break: break-all; }
+    #user-chat-box #messages .my-messages {
       min-width: 130px;
       max-width: 130px;
       min-height: 40px;
-      background-color: lightskyblue;
+      background-color: lightblue;
       padding: 5px;
-      font-size: 19px;
+      font-size: 17px;
       height: auto;
-      margin: 2px;
+      margin: 15px;
       margin-left: 200px;
-      word-break: normal; }
-      #user-chat-box #messages #my-messages span {
-        text-align: right;
+      word-break: normal;
+      position: relative;
+      text-align: right; }
+      #user-chat-box #messages .my-messages span {
+        text-align: inherit;
         min-width: inherit;
         max-width: inherit;
         min-height: inherit;
-        margin: 5px; }
+        margin: 5px;
+        word-break: break-all; }
+      #user-chat-box #messages .my-messages h4 {
+        color: brown;
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        bottom: -20px;
+        font-size: 15px;
+        word-break: break-all; }
   #user-chat-box #new-message-form {
     display: flex;
     position: fixed;
     bottom: 0%;
-    width: 340px;
-    max-width: 340px; }
+    width: 360px;
+    max-width: 360px;
+    width: 100%; }
     #user-chat-box #new-message-form input {
       width: 80%;
       height: 30px;
